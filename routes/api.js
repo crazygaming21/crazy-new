@@ -123,14 +123,29 @@ router.get('/news', passport.authenticate('jwt', { session: false}), function(re
   }
 });
 
-router.delete('/delkeynabeel', (req, res) => {
-  db.collection('users').remove({username: req.body.username}, (err, result) => {
-    if (err) return console.log(err)
-    console.log(req.body)
-    res.redirect('/')
-  })
-})
+ 
 
+ router.post('/getexpiretime', function(req,res){
+ const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://trayskyes8900:golu9079meena@gamechangers-8ifng.mongodb.net/test?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  const myquery = {username: req.body.username};   
+    client.connect(err => {
+      const collection = client.db("test").collection("users");
+      collection.findOne(myquery, function(err, doc) {
+        if (err) throw err;
+        var exp = JSON.stringify(doc);
+        var strJSON = exp;
+        var objJSON = eval("(function(){return " + strJSON + ";})()");
+        res.json({ expTime : objJSON.expireAt});
+        client.close();
+ });  
+ }); 
+});
+
+
+
+  
 
 getToken = function (headers) {
   if (headers && headers.authorization) {
