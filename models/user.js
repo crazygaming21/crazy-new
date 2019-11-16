@@ -9,8 +9,16 @@ var UserSchema = new Schema({
         required: true
     },
   password: {
-        type: String,
+      
+    type: String,
         required: true
+    },
+
+    device_id :{
+      
+        type : String,
+        required :true
+    
     },
  
     createdAt: { 
