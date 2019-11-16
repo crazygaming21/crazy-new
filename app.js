@@ -33,7 +33,7 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 
 app.get('/', function(req, res) {
-  res.send('H');
+  res.send('Error :404, Not Found');
 });
 
 app.use('/api', api);
