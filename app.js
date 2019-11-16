@@ -33,7 +33,7 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 
 app.get('/', function(req, res) {
-  res.send('Hello Navdeep Meena');
+  res.send('Hello');
 });
 
 app.use('/api', api);
