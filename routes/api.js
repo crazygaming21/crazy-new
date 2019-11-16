@@ -104,7 +104,7 @@ router.get('/book', passport.authenticate('jwt', { session: false}), function(re
   if (token) {
     Book.find(function (err, books) {
       if (err) return next(err);
-      res.json({msg: 'https://crazy.sgp1.cdn.digitaloceanspaces.com/CGaming2.zip'});
+      res.json({msg: 'https://crazy.sgp1.cdn.digitaloceanspaces.com/CGaming.zip'});
     });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
