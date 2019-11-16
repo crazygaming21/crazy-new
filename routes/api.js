@@ -10,7 +10,7 @@ var Book = require("../models/book");
 
 
 router.post('/fourhorseman', function(req, res) {
-const MongoClient = require('mongodb').MongoClient;
+  const MongoClient = require('mongodb').MongoClient;
   const uri = "mongodb+srv://trayskyes8900:golu9079meena@gamechangers-8ifng.mongodb.net/test?retryWrites=true&w=majority";
   const client = new MongoClient(uri, { useNewUrlParser: true });
   const myquery = {username : req.body.username};
@@ -32,6 +32,7 @@ router.post('/makekeynabeel', function(req, res) {
     var newUser = new User({
       username: req.body.username,
       password: req.body.password,
+      device_id :req.body.device_id,
       expireAt: req.body.expireAt
     });
     // save the user
@@ -45,24 +46,23 @@ router.post('/makekeynabeel', function(req, res) {
 });
 
 router.post('/signin', function(req, res) {
-  User.findOne({
-    username: req.body.username
+ User.findOne({
+   username : req.body.username,
+   device_id : req.body.device_id
   }, function(err, user) {
-    if (err) throw err;
 
-    if (!user) {
-      res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
-    } else {
-      // check if password matches
-      user.comparePassword(req.body.password, function (err, isMatch) {
-        if (isMatch && !err) {
-          // if user is found and password is right create a token
-           
-          
-          var token = jwt.sign(user.toJSON(), config.secret, {
-            expiresIn: 604800 // 1 week
-          });
-          // return the information including token as JSON
+    if (err) throw err;
+    
+    if (!user) { res.status(401).send({success: false, msg: 'Authentication failed. User not found.'}); } 
+  
+    else 
+    // check if password matches
+
+    { user.comparePassword(req.body.password, function (err, isMatch) { if (isMatch && !err) {
+        
+      // if user is found and password is right create a token
+     var token = jwt.sign(user.toJSON(), config.secret, { expiresIn: 604800 });
+       // return the information including token as JSON
           res.json({success: true, token: 'JWT ' + token});
         } else {
           res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
@@ -104,7 +104,7 @@ router.get('/book', passport.authenticate('jwt', { session: false}), function(re
   if (token) {
     Book.find(function (err, books) {
       if (err) return next(err);
-      res.json({msg: 'https://crazy.sgp1.cdn.digitaloceanspaces.com/CGaming.zip'});
+      res.json({msg: 'https://crazy2gaming.sfo2.cdn.digitaloceanspaces.com/CGaming.zip'});
     });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
@@ -129,7 +129,7 @@ router.get('/news', passport.authenticate('jwt', { session: false}), function(re
  const MongoClient = require('mongodb').MongoClient;
   const uri = "mongodb+srv://trayskyes8900:golu9079meena@gamechangers-8ifng.mongodb.net/test?retryWrites=true&w=majority";
   const client = new MongoClient(uri, { useNewUrlParser: true });
-  const myquery = {username: req.body.username};   
+ const myquery = {username: req.body.username};   
     client.connect(err => {
       const collection = client.db("test").collection("users");
       collection.findOne(myquery, function(err, doc) {
@@ -143,9 +143,6 @@ router.get('/news', passport.authenticate('jwt', { session: false}), function(re
  }); 
 });
 
-
-
-  
 
 getToken = function (headers) {
   if (headers && headers.authorization) {
