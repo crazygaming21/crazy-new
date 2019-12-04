@@ -45,7 +45,7 @@ router.post('/makekeynabeel', function(req, res) {
   }
 });
 
-router.post('/signi23n', function(req, res) {
+router.post('/signin', function(req, res) {
  User.findOne({
    username : req.body.username,
    device_id : req.body.device_id
@@ -104,7 +104,7 @@ router.get('/book', passport.authenticate('jwt', { session: false}), function(re
   if (token) {
     Book.find(function (err, books) {
       if (err) return next(err);
-      res.json({msg: 'https://crazy.sgp1.cdn.digitaloceanspaces.com/CGaming.zip'});
+      res.json({msg: 'https://onedrive.live.com/download?cid=D5B13293BB8AE146&resid=D5B13293BB8AE146%21490&authkey=APlD_pcw7rnveX8'});
     });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
