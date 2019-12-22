@@ -74,7 +74,7 @@ router.post('/signin', function(req, res) {
 
 router.get('/signout', passport.authenticate('jwt', { session: false}), function(req, res) {
   req.logout();
-  res.json({msg: 'Hello We are from Crazy Gaming Thanks for Purchasing our Antiban Application subscription'});
+  res.json({msg: 'Hello We are from Crazy Gaming Global Has Been Updated'});
 });
 
 router.post('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
@@ -104,7 +104,7 @@ router.get('/book', passport.authenticate('jwt', { session: false}), function(re
   if (token) {
     Book.find(function (err, books) {
       if (err) return next(err);
-      res.json({msg: 'https://onedrive.live.com/?cid=4DC4249835D6E99D&resid=4DC4249835D6E99D%21106&authkey=ACAfF3LSNtO_nmQ'});
+      res.json({msg: 'https://onedrive.live.com/embed?cid=4DC4249835D6E99D&resid=4DC4249835D6E99D%21107&authkey=AADrc0B1W8S_0Ec'});
     });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
