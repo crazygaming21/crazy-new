@@ -45,7 +45,7 @@ router.post('/makekeynabeel', function(req, res) {
   }
 });
 
-router.post('/signi25n', function(req, res) {
+router.post('/signin', function(req, res) {
  User.findOne({
    username : req.body.username,
    device_id : req.body.device_id
