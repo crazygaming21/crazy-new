@@ -104,7 +104,7 @@ router.get('/book', passport.authenticate('jwt', { session: false}), function(re
   if (token) {
     Book.find(function (err, books) {
       if (err) return next(err);
-      res.json({msg: 'https://onedrive.live.com/download?cid=D5B13293BB8AE146&resid=D5B13293BB8AE146%21490&authkey=APlD_pcw7rnveX8'});
+      res.json({msg: 'https://onedrive.live.com/?cid=4DC4249835D6E99D&resid=4DC4249835D6E99D%21106&authkey=ACAfF3LSNtO_nmQ'});
     });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
