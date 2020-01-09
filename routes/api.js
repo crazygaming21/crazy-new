@@ -74,7 +74,7 @@ router.post('/signin', function(req, res) {
 
 router.get('/signout', passport.authenticate('jwt', { session: false}), function(req, res) {
   req.logout();
-  res.json({msg: 'Welcome To CrazyGaming'});
+  res.json({msg: 'Welcome global korean vietnam all okay'});
 });
 
 router.post('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
